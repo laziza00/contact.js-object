@@ -75,10 +75,15 @@ function showContacts(e) {
           <p class="contact__name" >${el.firstName}</p>
           <p class="contact__name" >${el.lastName}</p>
         </div>
-    
+        <div class="contact__number-box">
+        <div>
         <a class="contact__number" href="tel:${el.telNume}"> ${el.telNume}
         <i class='bx bxs-phone'></i></a>
+      
         <p class="contact__rel" id="relative">${el.category}</p>
+        </div>
+        <button class="contact__btn-remove" onclick="removeItem(${el.id})"> <i class='bx bx-trash'></i></button>
+        </div>
       </div>
         `
         contactList.appendChild(li)

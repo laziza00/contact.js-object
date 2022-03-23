@@ -55,7 +55,7 @@ body {
 .contact__list-box {
   box-shadow: 0 5px 30px 0 rgba(0,0,0,0.2);
   background-color: #fff;
-  padding: 40px;
+  padding:  30px 40px;
   width: 48%;
   border: 2px solid rgb(68, 95, 170);
   border-radius: 10px;
@@ -109,8 +109,28 @@ body {
 .contact__inner-box {
   display: flex;
 }
-
-
+.contact__number-box {
+  display: flex;
+  justify-content: space-between;
+}
+.contact__btn-remove {
+  background-color: transparent;
+  color:rgb(68, 95, 170);
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+  border: none;
+}
+.contact__btns {
+  display: flex;
+  justify-content: space-between;
+}
+.contact__btn-tog {
+  background-color: rgb(153, 165, 199);
+  color: #fff;
+  font-size: 18px;
+  border: none;
+}
 
 
 
