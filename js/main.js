@@ -7,36 +7,7 @@ let contactList =document.querySelector('#contact-list');
 let sortElemet = document.querySelector('#sort');
 
 
-let contactForm = [
-    {
-        id: 1,
-        firstName: 'Parizod',
-        lastName: 'Abdulaxtova',
-        telNume: '+998901234567',
-        category: 'family',
-    },
-    {
-        id: 2,
-        firstName: 'Xushnora',
-        lastName: 'Nishonova',
-        telNume: '+998901234567',
-        category: 'friend',
-    },
-    {
-        id: 3,
-        firstName: 'Johnny ',
-        lastName: 'Deep',
-        telNume: '+998901234567',
-        category: 'work',
-    },
-    {
-        id: 4,
-        firstName: 'Xumora',
-        lastName: 'Esanova',
-        telNume: '+998901234567',
-        category: 'friend',
-    }
-];
+
 
 let arr =[]
 let newListArr =[]
