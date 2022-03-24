@@ -13,7 +13,7 @@ let contactForm = [
         firstName: 'Parizod',
         lastName: 'Abdulaxtova',
         telNume: '+998901234567',
-        category: 'relative',
+        category: 'family',
     },
     {
         id: 2,
@@ -39,110 +39,169 @@ let contactForm = [
 ];
 
 let arr =[]
+let newListArr =[]
 
-showContacts(contactForm);
 
 form.addEventListener('submit', (e) =>{
      
     e.preventDefault();
 
-    let user = 
-    {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        telNume: telNume.value,
-        category: category.value
+
+    arr.push({
+
+        firstname: firstName.value,
+        lastname: lastName.value,
+        tenume: telNume.value,
+        fcategory: category.value
     }
+    );
 
-    arr.push(user);
-
-    firstName = "",
-    lastName = "",
-    telNume ="";
-    category =""
-
-    showContacts(arr)
-})
-
-function showContacts(e) {
-
-    e.forEach(el =>{
-        let li = document.createElement('li');
-        li.className = "contact__item"
-        li.innerHTML =`
+    newListArr= arr.map((item) => {
+        return `
+        <li class="contact__item">
         <div class="contact__item">
         <div class="contact__inner-box" style="display: flex;">
-          <p class="contact__name" >${el.firstName}</p>
-          <p class="contact__name" >${el.lastName}</p>
+          <p class="contact__name" >${item.firstname}</p>
+          <p class="contact__name" >${item.lastname}</p>
         </div>
         <div class="contact__number-box">
         <div>
-        <a class="contact__number" href="tel:${el.telNume}"> ${el.telNume}
+        <a class="contact__number" href="tel:${item.tenume}"> ${item.tenume}
         <i class='bx bxs-phone'></i></a>
       
-        <p class="contact__rel" id="relative">${el.category}</p>
+        <p class="contact__rel" id="relative">${item.fcategory}</p>
         </div>
-        <button class="contact__btn-remove" onclick="removeItem(${el.id})"> <i class='bx bx-trash'></i></button>
+        <button class="contact__btn-remove" onclick="removeItem(${item.id})"> <i class='bx bx-trash'></i></button>
         </div>
       </div>
-        `
-        contactList.appendChild(li)
-        console.log(li);
-
+      </li>`
     })
-    firstName = "",
-    lastName = "",
-    telNume ="";
-    category =""
-}
 
-sortElemet.addEventListener('click', sortItems);
+contactList.innerHTML= newListArr.join(" ")
 
-let newArr = contactForm.concat(arr);
 
-function sortItems (e) {
+    firstName.value = "",
+    lastName.value = "",
+    telNume.value ="";
+})
 
-    contactList.innerHTML = '';
 
-    switch(e.target.value) {
-        case 'all':
-            showContacts(newArr);
-            break;
+sortElemet.addEventListener('click', (e)=> {
 
-        case 'relatives':
-        let a = newArr.filter((el) => {
-            if (el.category=='relative') return true;
+    if(e.target.textContent==='family'){
+        let newBadiiy = arr.filter((item)=>{
+            return item.category== "Family"
         })
-        showContacts(a)
-        break;
-        case 'friends':
-        let b = newArr.filter((el) => {
-            if (el.category=='friend') return true;
+
+        newListArr = newBadiiy.map((item) => {
+            return `
+            <li class="contact__item">
+            <div class="contact__item">
+            <div class="contact__inner-box" style="display: flex;">
+              <p class="contact__name" >${item.firstname}</p>
+              <p class="contact__name" >${item.lastname}</p>
+            </div>
+            <div class="contact__number-box">
+            <div>
+            <a class="contact__number" href="tel:${item.tenume}"> ${item.tenume}
+            <i class='bx bxs-phone'></i></a>
+          
+            <p class="contact__rel" id="relative">${item.fcategory}</p>
+            </div>
+            <button class="contact__btn-remove" onclick="removeItem(${item.id})"> <i class='bx bx-trash'></i></button>
+            </div>
+          </div>
+          </li>`
         })
-        showContacts(b);
-        break;
-        case 'work':
-            let c = newArr.filter((el) => {
-                if (el.category=='work') return true;
-            })
-            showContacts(c);
-            break;
+    
+        contactList.innerHTML= newListArr.join('')
     }
-}
+})
 
-function removeItem (e) {
-    let removeArr=[];
 
-    if (confirm("Are you sure you want to delete it? "))
-    {
-        contactList.innerHTML ="";
-        newArr.forEach((el)=>{
-            if(el.id!==e) {
-                removeArr.push(el)
-            }
-        })
 
-    }
-    newArr = removeArr;
-    showContacts(newArr)
-}
+
+
+
+// function showContacts(e) {
+
+//     e.forEach(el =>{
+    //     let li = document.createElement('li');
+    //     li.className = "contact__item"
+    //     li.innerHTML =`
+    //     <div class="contact__item">
+    //     <div class="contact__inner-box" style="display: flex;">
+    //       <p class="contact__name" >${el.firstName}</p>
+    //       <p class="contact__name" >${el.lastName}</p>
+    //     </div>
+    //     <div class="contact__number-box">
+    //     <div>
+    //     <a class="contact__number" href="tel:${el.telNume}"> ${el.telNume}
+    //     <i class='bx bxs-phone'></i></a>
+      
+    //     <p class="contact__rel" id="relative">${el.category}</p>
+    //     </div>
+    //     <button class="contact__btn-remove" onclick="removeItem(${el.id})"> <i class='bx bx-trash'></i></button>
+    //     </div>
+    //   </div>
+    //     `
+//         contactList.appendChild(li)
+//         console.log(li);
+
+//     })
+//     firstName = "",
+//     lastName = "",
+//     telNume ="";
+//     category =""
+// }
+
+// sortElemet.addEventListener('click', sortItems);
+
+// let newArr = contactForm.concat(arr);
+
+// function sortItems (e) {
+
+//     contactList.innerHTML = '';
+
+//     switch(e.target.value) {
+//         case 'all':
+//             showContacts(newArr);
+//             break;
+
+//         case 'relatives':
+//         let a = newArr.filter((el) => {
+//             if (el.category=='relative') return true;
+//         })
+//         showContacts(a)
+//         break;
+//         case 'friends':
+//         let b = newArr.filter((el) => {
+//             if (el.category=='friend') return true;
+//         })
+//         showContacts(b);
+//         break;
+//         case 'work':
+//             let c = newArr.filter((el) => {
+//                 if (el.category=='work') return true;
+//             })
+//             showContacts(c);
+//             break;
+//     }
+// }
+
+// function removeItem (e) {
+//     let removeArr=[];
+
+//     if (confirm("Are you sure you want to delete it? "))
+//     {
+//         contactList.innerHTML ="";
+//         newArr.forEach((el)=>{
+//             if(el.id!==e) {
+//                 removeArr.push(el)
+//             }
+//         })
+
+//     }
+//     newArr = removeArr;
+//     showContacts(newArr)
+// }
