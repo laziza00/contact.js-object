@@ -88,34 +88,41 @@ contactList.innerHTML= newListArr.join(" ")
 
 sortElemet.addEventListener('click', (e)=> {
 
-    if(e.target.textContent==='family'){
-        let newBadiiy = arr.filter((item)=>{
-            return item.category== "Family"
-        })
 
-        newListArr = newBadiiy.map((item) => {
-            return `
-            <li class="contact__item">
-            <div class="contact__item">
-            <div class="contact__inner-box" style="display: flex;">
-              <p class="contact__name" >${item.firstname}</p>
-              <p class="contact__name" >${item.lastname}</p>
-            </div>
-            <div class="contact__number-box">
-            <div>
-            <a class="contact__number" href="tel:${item.tenume}"> ${item.tenume}
-            <i class='bx bxs-phone'></i></a>
-          
-            <p class="contact__rel" id="relative">${item.fcategory}</p>
-            </div>
-            <button class="contact__btn-remove" onclick="removeItem(${item.id})"> <i class='bx bx-trash'></i></button>
-            </div>
-          </div>
-          </li>`
-        })
+            let newTypeArr = arr.filter((item)=>{
+                return item.fcategory == e.target.textContent
+            })
     
-        contactList.innerHTML= newListArr.join('')
-    }
+
+            if(e.target.textContent=='All') {
+
+                newTypeArr= arr
+            }
+
+
+            let newListArrOne = newTypeArr.map((item) => {
+                return `
+                <li class="contact__item">
+                <div class="contact__item">
+                <div class="contact__inner-box" style="display: flex;">
+                  <p class="contact__name" >${item.firstname}</p>
+                  <p class="contact__name" >${item.lastname}</p>
+                </div>
+                <div class="contact__number-box">
+                <div>
+                <a class="contact__number" href="tel:${item.tenume}"> ${item.tenume}
+                <i class='bx bxs-phone'></i></a>
+              
+                <p class="contact__rel" id="relative">${item.fcategory}</p>
+                </div>
+                <button class="contact__btn-remove" onclick="removeItem(${item.id})"> <i class='bx bx-trash'></i></button>
+                </div>
+              </div>
+              </li>`
+            })
+
+        
+            contactList.innerHTML= newListArrOne.join('')
 })
 
 
